@@ -20,6 +20,26 @@ If you wish to turn on/off the GPU manually with bbswitch setup, you can do
 ON:  `sudo tee /proc/acpi/bbswitch<<<ON` 
 OFF: `sudo tee /proc/acpi/bbswitch<<<OFF`
 
+Note, you might have to unload nvidia drivers before doing so, as bbswitch will intentionally not do anything if the GPU appears to be in use.
+```
+modprobe -r nvidia_drm nvidia_modeset nvidia
+```
+This is where Optimus Manager and Bumblebee come to shine, as they'll automatically unload the drivers before calling to bbswitch.
+
+It's recommended you blacklist these drivers regardless of your solution(/etc/modprobe.d/(whateveryoulike).conf):
+```
+blacklist nouveau
+blacklist nvidiafb
+blacklist rivafb
+blacklist i2c_nvidia_gpu
+```
+
+Optional modprobe.d addition:
+```
+remove nvidia modprobe -r --ignore-remove nvidia_drm nvidia_modeset nvidia
+```
+This will make it so when you run just `modprobe -r nvidia` it will automatically remove other dependent modules at the same time.
+
 Active Power Management
 ---
 When using any of the available options, I also recommend setting up some power management options for when the GPU is on, like described [here](https://asus-linux.org/wiki/rog-zephyrus/g14-and-g15/hardware/graphics/#power-management)
