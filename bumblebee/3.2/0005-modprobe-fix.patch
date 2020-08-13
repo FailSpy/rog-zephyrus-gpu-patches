@@ -1,0 +1,13 @@
+diff --unified --recursive --text src.orig/bumblebee/src/module.c src/bumblebee/src/module.c
+--- src.orig/bumblebee/src/module.c	2020-08-12 16:07:40.327134382 +0000
++++ src/bumblebee/src/module.c	2020-08-12 16:08:01.953801276 +0000
+@@ -96,7 +96,8 @@
+     int retries = 30;
+     bb_log(LOG_INFO, "Unloading %s driver\n", driver);
+     char *mod_argv[] = {
+-      "rmmod",
++      "modprobe",
++      "-r",
+       driver,
+       NULL
+     };
