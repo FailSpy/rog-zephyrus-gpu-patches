@@ -1,5 +1,16 @@
 # Bumblebee
 
+Dependencies
+---
+The following packages are dependencies for the build process:
+
+- pkg-config
+- glib-2.0 and development headers
+- libx11 and development headers
+- libbsd and development headers (if pidfile support is enabled, default yes)
+- help2man (optional, it is needed for building manual pages)
+- autotools (2.68+ recommended)
+
 Building
 ---
 ```text
