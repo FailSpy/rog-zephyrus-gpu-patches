@@ -4,8 +4,8 @@ You'll need your linux kernel headers for this, as well as DKMS.
 
 ```text
 git clone git://github.com/Bumblebee-Project/bbswitch.git
-git checkout origin/develop
 cd bbswitch/
+git checkout origin/develop
 patch --forward --strip 2 --input="location/to/bbswitch-zephyrus14.patch"
 make -f Makefile.dkms
 ```
